@@ -12,18 +12,18 @@ import java.util.Optional;
 
 
 @RestController
-public class UserController {
+public class ProdController {
 
     private OperaService operaService;
     private String id;
 
-    public UserController(@Autowired OperaService operaService) {
+    public ProdController(@Autowired OperaService operaService) {
         this.operaService = operaService;
     }
 
     @RequestMapping ( value =("/"))
     public List<Producto> findAllProducts() {
-        return operaService.getUser();
+        return operaService.getProduto();
     }
 
     @GetMapping (value = "/producto/{nombre}")

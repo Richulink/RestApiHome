@@ -2,55 +2,51 @@ package com.example.apiHome.services;
 
 
 import com.example.apiHome.domain.Producto;
-import com.example.apiHome.repositories.UsersRepository;
+import com.example.apiHome.repositories.ProdRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class OperaService {
 
-  private UsersRepository usersRepository;
+  private ProdRepository prodRepository;
     private Producto producto;
 
-    public OperaService(@Autowired UsersRepository usersRepository, @Autowired Producto producto) {
-        this.usersRepository = usersRepository;
+    public OperaService(@Autowired ProdRepository prodRepository, @Autowired Producto producto) {
+        this.prodRepository = prodRepository;
         this.producto = producto;
     }
 
-     public List<Producto> getUser() {
-         return usersRepository.findAll();
-
-
+     public List<Producto> getProduto() {
+         return prodRepository.findAll();
      }
 
-
     public Optional<Producto> getProductoById(long id){
-     return usersRepository.findById(id);
+     return prodRepository.findById(id);
     }
     public Producto getProductoByNonmbre (String nombre){
-        return usersRepository.findByNombre(nombre);
+        return prodRepository.findByNombre(nombre);
     }
 
     public Producto addProducto(Producto producto) {
-        return usersRepository.save(producto);
+        return prodRepository.save(producto);
     }
     
     public Producto actualizarProducto(Producto producto,Long id) {
-        return usersRepository.save(producto);
+        return prodRepository.save(producto);
     }
 
 
     public String deleteById(Long id) {
-        usersRepository.deleteById(id);
+        prodRepository.deleteById(id);
         return "producto borrado" + id;
     }
     public String deleteAll(Producto producto) {
-        usersRepository.deleteAll();
+        prodRepository.deleteAll();
         return "todos los productos han sido borrados" + producto;
     }
 }
